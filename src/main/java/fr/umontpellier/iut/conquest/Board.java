@@ -1,5 +1,6 @@
 package fr.umontpellier.iut.conquest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -106,12 +107,12 @@ public class Board {
             return false;
         }
         //Vérification de l'existance du pion
-        Pawn pionDuCoup = field[move.getRow1()][move.getColumn1()];
-        if (pionDuCoup == null){
+        Pawn playedPawn = field[move.getRow1()][move.getColumn1()];
+        if (playedPawn == null){
             return false;
         }
         //Vérification de l'appartenance du pion au joueur passé en paramètres
-        if (!pionDuCoup.getPlayer().equals(player)){
+        if (!playedPawn.getPlayer().equals(player)){
             return false;
         }
 
@@ -137,7 +138,15 @@ public class Board {
      *             - Dans tous les cas, une fois que le pion est déplacé, tous les pions se trouvant dans les cases adjacentes à sa case d'arrivée prennent sa couleur.
      */
     public void movePawn(Move move) {
-        throw new RuntimeException("Not implemented");
+        if (Math.abs(move.getColumn2() - move.getColumn1()) <= 1 && Math.abs(move.getRow2() - move.getRow1()) <= 1){
+            field[move.getRow2()][move.getColumn2()] = new Pawn(field[move.getRow1()][move.getColumn1()].getPlayer());
+        }else{
+            field[move.getRow2()][move.getColumn2()] = field[move.getRow1()][move.getColumn1()];
+            field[move.getRow1()][move.getColumn1()] = null;
+        }
+
+
+
     }
 
     /**
@@ -145,13 +154,23 @@ public class Board {
      * S'il n'y a de coup valide, retourne une liste vide.
      */
     public List<Move> getValidMoves(Player player) {
-        throw new RuntimeException("Not implemented");
+        List<Move> validMoves = new ArrayList<>();
+
+        return validMoves;
     }
 
     /**
      * Retourne la liste de tous les pions d'un joueur.
      */
     public int getNbPawns(Player player) {
-        throw new RuntimeException("Not implemented");
+        int count = 0;
+        for (int i = 0; i < getSize(); i++) {
+            for (int j = 0; j < getSize(); j++) {
+                if (field[i][j].getPlayer().equals(player)){
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }

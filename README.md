@@ -1,4 +1,3 @@
-# conquest-perso
 # ![](ressources/logo.jpeg) Projet de programmation en Semestre 3
 
 ### IUT Montpellier-Sète – Département Informatique
@@ -197,3 +196,4 @@ Algorithmique avancée (M3103) :
 Conc. et Prog. Objet Avancées (M3105) :
 - 20% : projet Conquest
 - 80% : partiel
+

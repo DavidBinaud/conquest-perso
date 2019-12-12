@@ -78,7 +78,14 @@ public class Board {
      * - player2 commence le jeu avec un pion en haut à droite et un pion en bas à gauche.
      */
     public void initField(Player player1, Player player2) {
-        throw new RuntimeException("Not implemented");
+        //player1
+        field[0][0] = new Pawn(player1);
+        field[getSize() - 1][getSize() - 1] = new Pawn(player1);
+
+        //player2
+        field[0][getSize() - 1] = new Pawn(player2);
+        field[getSize() - 1][0] = new Pawn(player2);
+
     }
 
     /**

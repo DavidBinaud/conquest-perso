@@ -29,7 +29,7 @@ class GameTest {
         Game.initInput(inputStream);
     }
 
-    @Disabled
+
     @Test
     void if_player2_has_no_pawn_left_then_the_game_should_be_finished_and_player1_should_win() {
         // Create input
@@ -66,7 +66,7 @@ class GameTest {
         assertEquals(player1, game.getWinner());
     }
 
-    @Disabled
+
     @Test
     void if_the_board_is_filled_and_player2_has_more_pawns_then_the_game_should_be_finished_and_player2_should_win() {
         // Create predefined game

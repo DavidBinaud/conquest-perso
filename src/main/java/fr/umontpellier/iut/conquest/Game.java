@@ -110,14 +110,17 @@ public class Game {
      * Initialise le jeu.
      */
     private void initGame() {
-        throw new RuntimeException("Not implemented");
+        board.initField(players[0],players[1]);
     }
 
     /**
      * Prends un joueur en entrée et retourne l'autre joueur.
      */
     public Player getOtherPlayer(Player player) {
-        throw new RuntimeException("Not implemented");
+        if (player.equals(players[0])){
+            return players[1];
+        }
+        return players[0];
     }
 
     /**
@@ -127,7 +130,23 @@ public class Game {
      * - La partie est finie quand l'un des deux joueurs n'a plus de pions.
      */
     public boolean isFinished() {
-        throw new RuntimeException("Not implemented");
+        boolean hasNoEmptyCell = true;
+        for (int i = 0; i < board.getSize(); i++) {
+            for (int j = 0; j < board.getSize(); j++) {
+                if (board.getField()[i][j] == null){
+                    hasNoEmptyCell = false;
+                }
+            }
+        }
+
+        boolean oneHasNoPawns = false;
+        for (Player player:players) {
+            if (board.getNbPawns(player) == 0){
+                oneHasNoPawns = true;
+            }
+        }
+
+        return hasNoEmptyCell || oneHasNoPawns;
     }
 
     /**
@@ -135,7 +154,10 @@ public class Game {
      * Rappel : Le joueur qui gagne est celui qui possède le plus de pions.
      */
     public Player getWinner() {
-        throw new RuntimeException("Not implemented");
+        int pawnPlayer1 = board.getNbPawns(players[0]);
+        int pawnPlayer2 = board.getNbPawns(players[1]);
+        return pawnPlayer1 > pawnPlayer2? players[0]:players[1];
+        //return board.getNbPawns(players[0]) > board.getNbPawns(players[1])? players[0]:players[1];
     }
 
     /**

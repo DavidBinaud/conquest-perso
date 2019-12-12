@@ -97,7 +97,34 @@ public class Board {
      * - La distance entre la case d'arrivée est au plus 2.
      */
     public boolean isValid(Move move, Player player) {
-        throw new RuntimeException("Not implemented");
+        //Vérification des coordonées de la position de départ
+        if (move.getRow1() >= getSize() || move.getRow1() < 0 || move.getColumn1() < 0 || move.getColumn1() >= getSize()) {
+            return false;
+        }
+        //Vérification des coordonées de la position d'arrivée
+        if (move.getRow2() >= getSize() || move.getRow2() < 0 || move.getColumn2() < 0 || move.getColumn2() >= getSize()) {
+            return false;
+        }
+        //Vérification de l'existance du pion
+        Pawn pionDuCoup = field[move.getRow1()][move.getColumn1()];
+        if (pionDuCoup == null){
+            return false;
+        }
+        //Vérification de l'appartenance du pion au joueur passé en paramètres
+        if (!pionDuCoup.getPlayer().equals(player)){
+            return false;
+        }
+
+        //Vérification que la case d'arrivée est libre
+        if (field[move.getRow2()][move.getColumn2()] != null) {
+            return false;
+        }
+
+        //Vérification de la distance entre les deux cases
+        if (Math.abs(move.getRow2() - move.getRow1()) > 2 || Math.abs(move.getColumn2() - move.getColumn1()) > 2) {
+            return false;
+        }
+        return true;
     }
 
     /**

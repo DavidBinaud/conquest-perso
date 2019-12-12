@@ -1,5 +1,6 @@
 package fr.umontpellier.iut.conquest;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -145,7 +146,15 @@ public class Board {
             field[move.getRow1()][move.getColumn1()] = null;
         }
 
-
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if (move.getRow2() + i >= 0 && move.getRow2() + i < getSize() && move.getColumn2() + j >= 0 && move.getColumn2() + j < getSize()) {
+                    if (field[move.getRow2()+i][move.getColumn2()+j] != null){
+                        field[move.getRow2() + i][move.getColumn2() + j].setPlayer(field[move.getRow2()][move.getColumn2()].getPlayer());
+                    }
+                }
+            }
+        }
 
     }
 
@@ -156,6 +165,21 @@ public class Board {
     public List<Move> getValidMoves(Player player) {
         List<Move> validMoves = new ArrayList<>();
 
+
+        for (int i = 0; i < getSize(); i++) {
+            for (int j = 0; j < getSize(); j++) {
+                if (field[i][j] != null && field[i][j].getPlayer().equals(player)) {
+                    for (int k = -2; k < 3; k++) {
+                        for (int l = -2; l < 3; l++) {
+                            Move moveToCheck = new Move(i,j,i+k,j+l);
+                            if (isValid(moveToCheck,player)){
+                                validMoves.add(moveToCheck);
+                            }
+                        }
+                    }
+                }
+            }
+        }
         return validMoves;
     }
 
@@ -166,7 +190,7 @@ public class Board {
         int count = 0;
         for (int i = 0; i < getSize(); i++) {
             for (int j = 0; j < getSize(); j++) {
-                if (field[i][j].getPlayer().equals(player)){
+                if (field[i][j] != null && field[i][j].getPlayer().equals(player)){
                     count++;
                 }
             }

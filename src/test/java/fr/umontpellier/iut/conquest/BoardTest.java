@@ -147,7 +147,7 @@ class BoardTest {
         assertTrue(b.isValid(new Move(0, 0, 0, 1), player1));
     }
 
-    @Disabled
+
     @Test
     void a_pawn_should_not_be_able_to_move_to_an_occupied_cell() {
         b.movePawn(new Move(0, 0, 0, 1));
@@ -490,7 +490,7 @@ class BoardTest {
         assertFalse(b.isValid(new Move(0, 0, 3, 0), player1));
     }
 
-    @Disabled
+
     @Test
     void after_a_move_an_adjacent_opposing_pawn_should_change_color() {
         b.movePawn(new Move(0, 0, 0, 2));
@@ -498,21 +498,21 @@ class BoardTest {
         assertEquals(2, b.getField()[0][2].getPlayer().getColor());
     }
 
-    @Disabled
+
     @Test
     void after_a_move_a_non_adjacent_opposing_pawn_should_not_change_color() {
         b.movePawn(new Move(0, 0, 0, 2));
         assertEquals(2, b.getField()[0][4].getPlayer().getColor());
     }
 
-    @Disabled
+
     @Test
     void after_a_move_an_adjacent_free_cell_should_stay_free() {
         b.movePawn(new Move(0, 0, 0, 2));
         assertNull(b.getField()[0][1]);
     }
 
-    @Disabled
+
     @Test
     void from_starting_position_on_a_board_of_size_3_player1_should_be_able_to_move_top_left_pawn_and_bottom_right_to_every_free_cell() {
         Board board = new Board(3);
@@ -531,7 +531,7 @@ class BoardTest {
         assertTrue(validMoves.contains(new Move(2, 2, 1, 2)));
     }
 
-    @Disabled
+
     @Test
     void from_starting_position_after_player1_does_one_distance_1_move_and_one_distance_2_move_and_taking_an_opponent_pawn_player1_should_have_four_pawns() {
         b.movePawn(new Move(0, 0, 0, 1));

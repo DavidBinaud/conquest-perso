@@ -1,6 +1,7 @@
 package fr.umontpellier.iut.conquest;
 
 import fr.umontpellier.iut.conquest.strategies.Human;
+import fr.umontpellier.iut.conquest.strategies.Naive;
 import fr.umontpellier.iut.conquest.strategies.Strategy;
 
 import java.util.Scanner;
@@ -108,7 +109,19 @@ public class AppConquest {
      * Retourne la stratégie correspondant au niveau de l'IA.
      */
     private static Strategy defineStrategies(int AILevel) {
-        throw new RuntimeException("Not implemented");
+        switch (AILevel){
+            case 0: return new Naive();
+            //changer par minMax1
+            case 1: return new Naive();
+            //changer par minMax2
+            case 2: return new Naive();
+            //changer par minMax3
+            case 3: return new Naive();
+            //changer par minMax4
+            case 4: return new Naive();
+            default: return new Naive();
+
+        }
     }
 
     private static int chooseHardcore(Scanner scan) {

@@ -88,6 +88,9 @@ public class Game {
 
             // Demande au joueur courant de joueur.
             if (!board.getValidMoves(player).isEmpty()) {
+                GameCaretaker caretaker = new GameCaretaker();
+                GameMemento memento = new GameMemento(board);
+                caretaker.addMemento(memento);
                 board.movePawn(player.play());
             }
 
@@ -171,7 +174,20 @@ public class Game {
      * @return Player : le joueur dont il est le tour de jouer.
      */
     private Player confirmOrUndoMove(Player player) {
-        throw new RuntimeException("Not implemented");
+        GameCaretaker caretaker = new GameCaretaker();
+
+        int choice = -2;
+        Player playerToPlay = player;
+        while (caretaker.hasMemento() && choice == 1) {
+            System.out.println("Voulez-vous annuler un coup(1) ou confirmer votre coup(0)?");
+            choice = scan.nextInt();
+
+            if (choice == 1) {
+                board = caretaker.getMemento().getBoard();
+            }
+            playerToPlay = getOtherPlayer(playerToPlay);
+        }
+        return playerToPlay;
     }
 }
 

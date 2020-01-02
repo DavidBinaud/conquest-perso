@@ -108,7 +108,7 @@ class GameTest {
          * 2|O _ X
          */
 
-        // Set player1 first move to (0,0) -> (1,1)
+        // Set player1 first move to (0,0) -> (0,1)
         input = input + "0 0 ";
         input = input + "0 1 ";
         /*

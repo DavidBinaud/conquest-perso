@@ -23,6 +23,8 @@ public class Game {
      */
     private Player[] players = new Player[2];
 
+    private final GameCaretaker caretaker = new GameCaretaker();
+
     /**
      * Constructeur.
      * Crée un plateau à partir de sa taille (impaire).
@@ -88,9 +90,7 @@ public class Game {
 
             // Demande au joueur courant de joueur.
             if (!board.getValidMoves(player).isEmpty()) {
-                GameCaretaker caretaker = new GameCaretaker();
-                GameMemento memento = new GameMemento(board);
-                caretaker.addMemento(memento);
+                caretaker.addMemento(saveToMemento());
                 board.movePawn(player.play());
             }
 
@@ -174,20 +174,32 @@ public class Game {
      * @return Player : le joueur dont il est le tour de jouer.
      */
     private Player confirmOrUndoMove(Player player) {
-        GameCaretaker caretaker = new GameCaretaker();
-
-        int choice = -2;
+        int choice = 1;
         Player playerToPlay = player;
+
         while (caretaker.hasMemento() && choice == 1) {
             System.out.println("Voulez-vous annuler un coup(1) ou confirmer votre coup(0)?");
             choice = scan.nextInt();
 
             if (choice == 1) {
-                board = caretaker.getMemento().getBoard();
+                undoFromMemento(caretaker.getMemento());
+                playerToPlay = getOtherPlayer(playerToPlay);
             }
-            playerToPlay = getOtherPlayer(playerToPlay);
         }
+
         return playerToPlay;
     }
+
+
+    public GameMemento saveToMemento(){
+        return new GameMemento(this.board);
+    }
+
+
+    public void undoFromMemento(GameMemento memento){
+        this.board = memento.getBoard();
+    }
+
+
 }
 

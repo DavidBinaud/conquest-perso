@@ -32,6 +32,23 @@ public class Board {
     }
 
     /**
+     * Constructeur copy.
+     *
+     * @param board: un board prédéfini
+     */
+    public Board(Board board){
+        int size = board.getSize();
+        this.field = new Pawn[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (board.getField()[i][j] != null) {
+                    this.field[i][j] = new Pawn(board.getField()[i][j].getPlayer());
+                }
+            }
+        }
+    }
+
+    /**
      * Les méthodes suivantes sont utilisées pour les tests automatiques. Il ne faut pas les utiliser.
      */
     public Pawn[][] getField() {

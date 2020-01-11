@@ -133,23 +133,7 @@ public class Game {
      * - La partie est finie quand l'un des deux joueurs n'a plus de pions.
      */
     public boolean isFinished() {
-        boolean hasNoEmptyCell = true;
-        for (int i = 0; i < board.getSize(); i++) {
-            for (int j = 0; j < board.getSize(); j++) {
-                if (board.getField()[i][j] == null){
-                    hasNoEmptyCell = false;
-                }
-            }
-        }
-
-        boolean oneHasNoPawns = false;
-        for (Player player:players) {
-            if (board.getNbPawns(player) == 0){
-                oneHasNoPawns = true;
-            }
-        }
-
-        return hasNoEmptyCell || oneHasNoPawns;
+        return board.isFull() || board.getNbPawns(players[0]) == 0 || board.getNbPawns(players[1]) == 0 ;
     }
 
     /**
@@ -160,7 +144,6 @@ public class Game {
         int pawnPlayer1 = board.getNbPawns(players[0]);
         int pawnPlayer2 = board.getNbPawns(players[1]);
         return pawnPlayer1 > pawnPlayer2? players[0]:players[1];
-        //return board.getNbPawns(players[0]) > board.getNbPawns(players[1])? players[0]:players[1];
     }
 
     /**

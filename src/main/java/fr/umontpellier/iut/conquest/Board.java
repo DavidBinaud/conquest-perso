@@ -214,4 +214,16 @@ public class Board {
         }
         return count;
     }
+
+
+    public boolean isFull(){
+        for (int i = 0; i < getSize(); i++) {
+            for (int j = 0; j < getSize(); j++) {
+                if (field[i][j] == null){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

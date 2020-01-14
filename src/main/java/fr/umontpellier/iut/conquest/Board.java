@@ -1,6 +1,5 @@
 package fr.umontpellier.iut.conquest;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,7 @@ public class Board {
     /**
      * Tableau des pions.
      */
-    private Pawn[][] field;
+    private final Pawn[][] field;
 
     /**
      * Constructeur.
@@ -41,8 +40,8 @@ public class Board {
         this.field = new Pawn[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (board.getField()[i][j] != null) {
-                    this.field[i][j] = new Pawn(board.getField()[i][j].getPlayer());
+                if (board.field[i][j] != null) {
+                    this.field[i][j] = new Pawn(board.field[i][j].getPlayer());
                 }
             }
         }
@@ -116,6 +115,9 @@ public class Board {
      * - La distance entre la case d'arrivée est au plus 2.
      */
     public boolean isValid(Move move, Player player) {
+        if (move == null){
+            return false;
+        }
         //Vérification des coordonées de la position de départ
         if (move.getRow1() >= getSize() || move.getRow1() < 0 || move.getColumn1() < 0 || move.getColumn1() >= getSize()) {
             return false;
@@ -140,10 +142,7 @@ public class Board {
         }
 
         //Vérification de la distance entre les deux cases
-        if (Math.abs(move.getRow2() - move.getRow1()) > 2 || Math.abs(move.getColumn2() - move.getColumn1()) > 2) {
-            return false;
-        }
-        return true;
+        return Math.abs(move.getRow2() - move.getRow1()) <= 2 && Math.abs(move.getColumn2() - move.getColumn1()) <= 2;
     }
 
     /**

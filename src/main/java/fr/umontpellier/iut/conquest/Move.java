@@ -37,19 +37,19 @@ public class Move {
      * Getters.
      */
 
-    int getRow1() {
+    public int getRow1() {
         return row1;
     }
 
-    int getColumn1() {
+    public int getColumn1() {
         return column1;
     }
 
-    int getRow2() {
+    public int getRow2() {
         return row2;
     }
 
-    int getColumn2() {
+    public int getColumn2() {
         return column2;
     }
 

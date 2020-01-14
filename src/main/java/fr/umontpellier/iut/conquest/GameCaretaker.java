@@ -3,13 +3,12 @@ package fr.umontpellier.iut.conquest;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class GameCaretaker {
+class GameCaretaker {
 
     final Deque<GameMemento> mementos = new ArrayDeque<>();
 
     public GameMemento getMemento(){
-        GameMemento gameMemento = mementos.pop();
-        return gameMemento;
+        return mementos.pop();
     }
 
     public void addMemento(GameMemento memento){

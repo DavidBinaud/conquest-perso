@@ -1,12 +1,10 @@
 package fr.umontpellier.iut.conquest;
 
-import fr.umontpellier.iut.conquest.strategies.Human;
-import fr.umontpellier.iut.conquest.strategies.Naive;
-import fr.umontpellier.iut.conquest.strategies.Strategy;
+import fr.umontpellier.iut.conquest.strategies.*;
 
 import java.util.Scanner;
 
-public class AppConquest {
+class AppConquest {
     public static void main(String[] args) {
         // Saisie à partir de la console
         Game.initInput(System.in);
@@ -112,13 +110,13 @@ public class AppConquest {
         switch (AILevel){
             case 0: return new Naive();
             //changer par minMax1
-            case 1: return new Naive();
+            case 1: return new Minmax(1);
             //changer par minMax2
-            case 2: return new Naive();
+            case 2: return new Minmax(2);
             //changer par minMax3
-            case 3: return new Naive();
+            case 3: return new Minmax(3);
             //changer par minMax4
-            case 4: return new Naive();
+            case 4: return new Minmax(4);
             default: return new Naive();
 
         }

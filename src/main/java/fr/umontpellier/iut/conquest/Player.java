@@ -11,19 +11,19 @@ public class Player {
     /**
      * La stratégie du joueur.
      */
-    private Strategy strategy;
+    private final Strategy strategy;
     /**
      * La partie en cours.
      */
-    private Game game;
+    private final Game game;
     /**
      * Le nom du joueur.
      */
-    private String name;
+    private final String name;
     /**
      * La couleur du joueur.
      */
-    private int color;
+    private final int color;
 
     /**
      * Constructeur.

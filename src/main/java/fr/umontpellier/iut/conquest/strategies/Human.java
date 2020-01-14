@@ -13,7 +13,7 @@ public class Human implements Strategy {
     /**
      * Scanner de l'entrée.
      */
-    private Scanner scan;
+    private final Scanner scan;
 
     /**
      * Constructeur.

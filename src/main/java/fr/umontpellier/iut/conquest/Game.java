@@ -9,6 +9,7 @@ import java.util.Scanner;
  * Modélise une partie de Conquest.
  */
 
+
 public class Game {
     /**
      * Scanner permettant de lire les entrées.
@@ -21,7 +22,7 @@ public class Game {
     /**
      * Les joueurs.
      */
-    private Player[] players = new Player[2];
+    private final Player[] players = new Player[2];
 
     private final GameCaretaker caretaker = new GameCaretaker();
 
@@ -90,7 +91,6 @@ public class Game {
 
             // Demande au joueur courant de joueur.
             if (!board.getValidMoves(player).isEmpty()) {
-                caretaker.addMemento(saveToMemento());
                 board.movePawn(player.play());
             }
 
@@ -114,6 +114,7 @@ public class Game {
      */
     private void initGame() {
         board.initField(players[0],players[1]);
+        caretaker.addMemento(saveToMemento());
     }
 
     /**
@@ -170,16 +171,18 @@ public class Game {
             }
         }
 
+
+        caretaker.addMemento(saveToMemento());
         return playerToPlay;
     }
 
 
-    public GameMemento saveToMemento(){
+    private GameMemento saveToMemento(){
         return new GameMemento(this.board);
     }
 
 
-    public void undoFromMemento(GameMemento memento){
+    private void undoFromMemento(GameMemento memento){
         this.board = memento.getBoard();
     }
 

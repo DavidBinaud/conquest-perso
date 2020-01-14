@@ -1,7 +1,7 @@
 package fr.umontpellier.iut.conquest;
 
 public class GameMemento {
-    private Board board;
+    private final Board board;
 
 
     public GameMemento(Board board) {

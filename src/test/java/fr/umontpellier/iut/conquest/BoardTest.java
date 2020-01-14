@@ -1,7 +1,6 @@
 package fr.umontpellier.iut.conquest;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.OutputStream;
@@ -12,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
     private Board b;
-    private Player player1 = new Player(null, null, null, 1);
-    private Player player2 = new Player(null, null, null, 2);
+    private final Player player1 = new Player(null, null, null, 1);
+    private final Player player2 = new Player(null, null, null, 2);
 
     @BeforeEach
     void disableConsole() {
